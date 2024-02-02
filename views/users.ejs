@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 400px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #007bff; /* Heading color */
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #333; /* Label text color */
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            outline: none;
+        }
+
+        button {
+            margin: 10px;
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        a {
+            margin: 10px;
+            text-decoration: none; 
+            color: white; 
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Add TODO</h2>
+        <form action="/users" method="post">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" placeholder="Enter TODO name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="date">Date:</label>
+                <input type="date" id="date" name="date" required>
+            </div>
+
+            <div class="form-group">
+                <label for="description">Description:</label>
+                <textarea id="description" name="description" placeholder="Enter TODO description" rows="4" ></textarea>
+            </div>
+
+            <button type="submit">Add TODO</button>
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                <a href="../view" >View my data</a>
+              </button>
+        </form>
+    </div>
+    <!-- <div class="container">
+        <h2>TODO List</h2>
+        <div class="flex-container">
+            <% for (var i = 0; i < users.length; i++) { %>
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title"><%= users[i].name %></h5>
+                        <p class="card-text">Date: <%= users[i].date %></p>
+                        <p class="card-text"><%= users[i].description %></p>
+                    </div>
+                </div>
+            <% } %>
+        </div>
+    </div> -->
+</body>
+</html>

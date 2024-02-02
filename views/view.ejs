@@ -1,0 +1,113 @@
+<!-- todos.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODO List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 95%;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #007bff; /* Heading color */
+        }
+
+        .flex-container {
+            display: inline-block;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            margin: 10px;
+            padding: 20px;
+            width: 18rem;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .delete-icon {
+            color: red;
+            cursor: pointer;
+            font-size: 20px;
+        }
+        .flex {
+            display: inline-block;
+            flex-wrap: wrap;
+        }
+    .card{
+        margin: 20px;
+        padding: 20px;
+        
+    }
+    .add-icon {
+            color: green;
+            cursor: pointer;
+            font-size: 20px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>TODO List</h2>
+        <div class="flex-container">
+            <% for (var i = 0; i < users.length; i++) { %>
+                <div class="card flex">
+                    <div class="card-body">
+                        <h5 class="card-title"><%= users[i].name %></h5>
+                        <p class="card-text">Date: <%= users[i].date %></p>
+                        <p class="card-text"><%= users[i].description %></p>
+                        <button class="delete-icon" onclick="deleteTodo ('<%= users[i]._id %>')">&#10006;</button>
+                        <button class="edit-icon" onclick="editTodo('<%= users[i]._id %>')">&#9998;</button>
+                        <!-- <form action="/view/<%= users[i]._id %>?_method=DELETE" method="post" style="display: inline;">   
+                            <input type="hidden" name="_method" value="DELETE">
+                            <button type="submit" class="delete-icon" >&#10006;</button>
+                        </form> -->
+                        <!-- <span class="delete-icon" onclick="deleteTodo('<%= users[i]._id %>')">&#10006;</span> -->
+                    </div>
+                </div>
+            <% } %>
+            <div class="card add-icon" onclick="redirectToNewTodo()">
+                <div class="card-body">
+                    <h5 class="card-title">Add New</h5>
+                    <span>&#43;</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function redirectToNewTodo(){
+            window.location.href='./users';
+        }
+        
+        function deleteTodo(todoId) {
+        // Implement delete operation using AJAX
+        fetch(`/view/${todoId}`, { method: 'DELETE' })
+            .then(window.location.reload())
+            .catch(error => console.error('Error:', error));
+    }
+    </script>
+</body>
+</html>
